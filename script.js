@@ -164,10 +164,7 @@ const app = {
 
         document.onscroll = function () {
             const scrollTop = document.documentElement.scrollTop
-            console.log(scrollTop)
-
             const newCdWidth = cdWidth - scrollTop
-            console.log('newWidth', newCdWidth)
             r.style.setProperty('--cd-dim', newCdWidth + 'px');
             r.style.setProperty('--thumb-dim', Math.floor(newCdWidth * 94 / 100) + 'px');
             r.style.setProperty('--c-width', Math.floor(newCdWidth * 3 / 100) + 'px');
