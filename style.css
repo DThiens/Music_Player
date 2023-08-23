@@ -167,11 +167,8 @@ header h2 {
 }
 
 .control-right {
-    position: absolute;
-    left: 384px;
-    vertical-align: middle;
-    right: 0;
-    top: 18px;
+    position: relative;
+    top: -27px;
 }
 
 .control .btn.active {
@@ -234,12 +231,12 @@ header h2 {
 
 div.btn.btn-toggle-volume {
     position: absolute;
-    bottom: 0;
+    /* bottom: 0;
     top: 0;
     right: 0;
-    left: 0;
-    padding: 19px 0px 0px 0px;
-    width: fit-content;
+    left: 0; */
+    /* padding: 19px 0px 0px 0px;
+    width: fit-content; */
 }
 
 .btn-toggle-volume {
