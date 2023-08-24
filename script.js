@@ -8,6 +8,7 @@ const heading = $('header h2')
 const cdThumb = $('.cd-thumb')
 const audio = $('#audio')
 const playBtn = $('.btn-toggle-play')
+const button = $('.btn')
 const progress = $('#progress')
 const prevBtn = $('.btn-prev')
 const nextBtn = $('.btn-next')
@@ -23,6 +24,8 @@ const rangeValue = $('.range')
 const cdProgressFull = $('.cd .circle .mask.full')
 const cdProgressFill = $$('.cd .circle .mask .fill')
 var r = $(':root');
+
+
 const initialConfig = {
     isRandom: false,
     isRepeat: false,
@@ -150,10 +153,9 @@ const app = {
     },
     handleEvents: function () {
         const _this = this
+        // Xử lý CD quay/dừng
         const cdWidth = cd.offsetWidth
         const cdHeight = cd.offsetHeight
-
-        // Xử lý CD quay/dừng
         const cdThumbAnimate = cdThumb.animate([
             { transform: 'rotate(360deg)' }
         ], {
@@ -171,6 +173,14 @@ const app = {
             cd.style.opacity = newCdWidth / cdWidth
         }
         // Xử lý khi click play
+        playBtn.addEventListener('touchstart', () => {
+            playBtn.style.filter = 'brightness(2.5)'
+        }, { passive: true })
+
+        playBtn.addEventListener('touchend', () => {
+            playBtn.style.filter = ''
+        }, { passive: true })
+
         playBtn.onmousedown = function () {
 
             if (_this.isPlaying) {
@@ -216,6 +226,15 @@ const app = {
             });
         }
         // Khi next song 
+        nextBtn.addEventListener('touchstart', () => {
+            nextBtn.style.backgroundColor = '#d3d3d3'
+            nextBtn.style.borderRadius = '50%'
+        }, { passive: true })
+        nextBtn.addEventListener('touchend', () => {
+            nextBtn.style.backgroundColor = ''
+            nextBtn.style.borderRadius = ''
+        }, { passive: true })
+
         nextBtn.onclick = function () {
             if (_this.isRandom) {
                 _this.playRandomSong()
@@ -226,6 +245,15 @@ const app = {
             _this.scrollToActiveSong()
         }
         // Khi prev song 
+        prevBtn.addEventListener('touchstart', () => {
+            prevBtn.style.backgroundColor = '#d3d3d3'
+            prevBtn.style.borderRadius = '50%'
+        }, { passive: true })
+        prevBtn.addEventListener('touchend', () => {
+            prevBtn.style.backgroundColor = ''
+            prevBtn.style.borderRadius = ''
+        }, { passive: true })
+
         prevBtn.onclick = function () {
             if (_this.isRandom) {
                 _this.playRandomSong()
@@ -235,13 +263,32 @@ const app = {
             audio.play()
             _this.scrollToActiveSong()
         }
+
         // Xử lý lặp lại một song
+        repeatBtn.addEventListener('touchstart', () => {
+            repeatBtn.style.backgroundColor = '#d3d3d3'
+            repeatBtn.style.borderRadius = '50%'
+        }, { passive: true })
+        repeatBtn.addEventListener('touchend', () => {
+            repeatBtn.style.backgroundColor = ''
+            repeatBtn.style.borderRadius = ''
+        }, { passive: true })
+
         repeatBtn.onclick = function (e) {
             _this.isRepeat = !_this.isRepeat
             _this.setConfig('isRepeat', _this.isRepeat)
             repeatBtn.classList.toggle('active', _this.isRepeat)
         }
         // Xử lý bật/ tắt random song
+        randomBtn.addEventListener('touchstart', () => {
+            randomBtn.style.backgroundColor = '#d3d3d3'
+            randomBtn.style.borderRadius = '50%'
+        }, { passive: true })
+        randomBtn.addEventListener('touchend', () => {
+            randomBtn.style.backgroundColor = ''
+            randomBtn.style.borderRadius = ''
+        }, { passive: true })
+
         randomBtn.onclick = function (e) {
             _this.isRandom = !_this.isRandom
             _this.setConfig('isRandom', _this.isRandom)

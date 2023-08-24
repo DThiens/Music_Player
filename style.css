@@ -138,30 +138,41 @@ header h2 {
     justify-content: center;
 }
 
-
-.btn:hover.btn-toggle-play {
-    filter: brightness(2.5);
+@media (hover:hover) {
+    .btn:hover.btn-toggle-play {
+        filter: brightness(2.5);
+    }
 }
 
-.btn:hover.btn-prev {
-    border-radius: 50%;
-    background-color: #d3d3d3;
+@media (hover:hover) {
+    .btn:hover.btn-prev {
+        border-radius: 50%;
+        background-color: #d3d3d3;
+    }
 }
 
-.btn:hover.btn-next {
-    border-radius: 50%;
-    background-color: #d3d3d3;
+@media (hover:hover) {
+    .btn:hover.btn-next {
+        border-radius: 50%;
+        background-color: #d3d3d3;
+    }
 }
 
-.btn:hover.btn-repeat  {
-    border-radius: 50%;
-    background-color: #d3d3d3;
+@media (hover:hover) {
+    .btn:hover.btn-repeat {
+        border-radius: 50%;
+        background-color: #d3d3d3;
+    }
 }
 
-.btn:hover.btn-random  {
-    border-radius: 50%;
-    background-color: #d3d3d3;
+@media (hover:hover) {
+    .btn:hover.btn-random {
+        border-radius: 50%;
+        background-color: #d3d3d3;
+    }
 }
+
+
 .control {
     position: relative
 }
@@ -360,8 +371,10 @@ div.btn.btn-toggle-volume {
     font-weight: 300;
 }
 
-.tooltip-container:hover .tooltip {
-    opacity: 1;
+@media (hover:hover) {
+    .tooltip-container:hover .tooltip {
+        opacity: 1;
+    }
 }
 
 
@@ -376,20 +389,34 @@ div.btn.btn-toggle-volume {
 }
 
 .scrolling-text-container {
-    overflow: hidden; /* Ẩn nội dung vượt quá kích thước của khung */
-    width: 448px; /* Độ rộng của khung cuộn */
+    overflow: hidden;
+    /* Ẩn nội dung vượt quá kích thước của khung */
+    width: 448px;
+    /* Độ rộng của khung cuộn */
 }
 
 .scrolling-text {
-    white-space: nowrap; /* Ngăn chữ xuống dòng */
-    animation: scrollText 10s linear infinite; /* Sử dụng animation */
+    white-space: nowrap;
+    /* Ngăn chữ xuống dòng */
+    animation: scrollText 10s linear infinite;
+    /* Sử dụng animation */
 }
 
 @keyframes scrollText {
     0% {
-        transform: translateX(100%); /* Bắt đầu từ phía bên phải */
+        transform: translateX(100%);
+        /* Bắt đầu từ phía bên phải */
     }
+
     100% {
-        transform: translateX(-100%); /* Di chuyển sang bên trái */
+        transform: translateX(-100%);
+        /* Di chuyển sang bên trái */
     }
+}
+
+
+/* Thay đổi background khi đã chạm lên điện thoại */
+.player.touched .dashboard {
+    background-color: rgba(255, 255, 255, 0.9);
+    /* Thêm các điều chỉnh khác tùy theo mong muốn */
 }
