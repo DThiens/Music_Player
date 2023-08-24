@@ -201,9 +201,16 @@ header h2 {
 }
 
 
-.duration-bar:hover .progress {
+/* .duration-bar:hover .progress {
     height: 10px;
     cursor: pointer;
+} */
+
+@media (hover:hover) {
+    .duration-bar:hover .progress {
+        height: 10px;
+        cursor: pointer;
+    } 
 }
 
 .progress {
@@ -350,7 +357,7 @@ div.btn.btn-toggle-volume {
     background-color: var(--text-color);
     color: #fff;
     opacity: 0;
-    transition: opacity 0.2s;
+    transition: opacity 0.7s;
     pointer-events: none;
     white-space: nowrap;
     font-size: 15px;

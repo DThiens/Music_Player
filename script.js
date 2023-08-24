@@ -175,7 +175,14 @@ const app = {
         // Xử lý khi click play
         playBtn.addEventListener('touchstart', () => {
             playBtn.style.backgroundColor = 'rgb(255 0 0 / 39%)'
-            playBtn.querySelector('.tooltip').style.opacity = 1
+            // console.log(playBtn.querySelector('.icon-pause .tooltip'))
+            if(!_this.isPlaying) {
+                const iconPlay = playBtn.querySelector('.icon-play .tooltip')
+                iconPlay.style.opacity = 1
+            }else {
+                const iconPause = playBtn.querySelector('.icon-pause .tooltip')
+                iconPause.style.opacity = 1
+            }
         }, { passive: true })
 
         playBtn.addEventListener('touchmove', () => {
@@ -184,7 +191,8 @@ const app = {
 
         playBtn.addEventListener('touchend', () => {
             playBtn.style.backgroundColor = ''
-            playBtn.querySelector('.tooltip').style.opacity = 0
+            playBtn.querySelector('.icon-play .tooltip').style.opacity = ''
+            playBtn.querySelector('.icon-pause .tooltip').style.opacity = ''
         }, { passive: true })
 
         playBtn.onmousedown = function () {
