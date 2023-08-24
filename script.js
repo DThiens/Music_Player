@@ -174,11 +174,17 @@ const app = {
         }
         // Xử lý khi click play
         playBtn.addEventListener('touchstart', () => {
-            playBtn.style.filter = 'brightness(2.5)'
+            playBtn.style.backgroundColor = 'rgb(255 0 0 / 39%)'
+            playBtn.querySelector('.tooltip').style.opacity = 1
+        }, { passive: true })
+
+        playBtn.addEventListener('touchmove', () => {
+            playBtn.querySelector('.tooltip').style.opacity = '1'
         }, { passive: true })
 
         playBtn.addEventListener('touchend', () => {
-            playBtn.style.filter = ''
+            playBtn.style.backgroundColor = ''
+            playBtn.querySelector('.tooltip').style.opacity = 0
         }, { passive: true })
 
         playBtn.onmousedown = function () {
@@ -229,10 +235,17 @@ const app = {
         nextBtn.addEventListener('touchstart', () => {
             nextBtn.style.backgroundColor = '#d3d3d3'
             nextBtn.style.borderRadius = '50%'
+            nextBtn.querySelector('.tooltip').style.opacity = 1
         }, { passive: true })
+
+        nextBtn.addEventListener('touchmove', () => {
+            nextBtn.querySelector('.tooltip').style.opacity = '1'
+        }, { passive: true })
+
         nextBtn.addEventListener('touchend', () => {
             nextBtn.style.backgroundColor = ''
             nextBtn.style.borderRadius = ''
+            nextBtn.querySelector('.tooltip').style.opacity = '0'
         }, { passive: true })
 
         nextBtn.onclick = function () {
@@ -247,10 +260,17 @@ const app = {
         // Khi prev song 
         prevBtn.addEventListener('touchstart', () => {
             prevBtn.style.backgroundColor = '#d3d3d3'
+            prevBtn.querySelector('.tooltip').style.opacity = '1'
             prevBtn.style.borderRadius = '50%'
         }, { passive: true })
+
+        prevBtn.addEventListener('touchmove', () => {
+            prevBtn.querySelector('.tooltip').style.opacity = '1'
+        }, { passive: true })
+        
         prevBtn.addEventListener('touchend', () => {
             prevBtn.style.backgroundColor = ''
+            prevBtn.querySelector('.tooltip').style.opacity = '0'
             prevBtn.style.borderRadius = ''
         }, { passive: true })
 
@@ -267,10 +287,17 @@ const app = {
         // Xử lý lặp lại một song
         repeatBtn.addEventListener('touchstart', () => {
             repeatBtn.style.backgroundColor = '#d3d3d3'
+            repeatBtn.querySelector('.tooltip').style.opacity = '1'
             repeatBtn.style.borderRadius = '50%'
         }, { passive: true })
+
+        repeatBtn.addEventListener('touchmove', () => {
+            repeatBtn.querySelector('.tooltip').style.opacity = '1'
+        }, { passive: true })
+
         repeatBtn.addEventListener('touchend', () => {
             repeatBtn.style.backgroundColor = ''
+            repeatBtn.querySelector('.tooltip').style.opacity = '0'
             repeatBtn.style.borderRadius = ''
         }, { passive: true })
 
@@ -282,10 +309,17 @@ const app = {
         // Xử lý bật/ tắt random song
         randomBtn.addEventListener('touchstart', () => {
             randomBtn.style.backgroundColor = '#d3d3d3'
+            randomBtn.querySelector('.tooltip').style.opacity = '1'
             randomBtn.style.borderRadius = '50%'
         }, { passive: true })
+
+        randomBtn.addEventListener('touchmove', () => {
+            randomBtn.querySelector('.tooltip').style.opacity = '1'
+        }, { passive: true })
+
         randomBtn.addEventListener('touchend', () => {
             randomBtn.style.backgroundColor = ''
+            randomBtn.querySelector('.tooltip').style.opacity = '0'
             randomBtn.style.borderRadius = ''
         }, { passive: true })
 
@@ -347,6 +381,7 @@ const app = {
             audio.volume = volumeBar.value
             volumeBar.setAttribute("title", "Âm lượng " + volumeBar.value * 100 + "%")
         }
+        
         unmuteIcon.onclick = e => {
             this.setConfig("savedVolume", audio.volume)
             audio.volume = 0

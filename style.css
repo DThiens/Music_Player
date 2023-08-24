@@ -65,12 +65,6 @@ header h2 {
     font-size: 20px;
 }
 
-/* .cd {
-    display: flex;
-    margin: auto;
-    width: 200px;
-} */
-
 .cd-thumb {
     position: absolute;
     width: var(--thumb-dim);
@@ -86,8 +80,7 @@ header h2 {
 .cd {
     display: flex;
     margin: auto;
-
-    /* flex-direction: row; */
+    flex-direction: row;
     width: var(--cd-dim);
     height: var(--cd-dim);
     border-radius: 50%;
@@ -242,12 +235,6 @@ header h2 {
 
 div.btn.btn-toggle-volume {
     position: absolute;
-    /* bottom: 0;
-    top: 0;
-    right: 0;
-    left: 0; */
-    /* padding: 19px 0px 0px 0px;
-    width: fit-content; */
 }
 
 .btn-toggle-volume {
@@ -360,7 +347,7 @@ div.btn.btn-toggle-volume {
     left: 50%;
     transform: translateX(-50%);
     padding: 5px;
-    background-color: #333;
+    background-color: var(--text-color);
     color: #fff;
     opacity: 0;
     transition: opacity 0.2s;
@@ -412,11 +399,4 @@ div.btn.btn-toggle-volume {
         transform: translateX(-100%);
         /* Di chuyển sang bên trái */
     }
-}
-
-
-/* Thay đổi background khi đã chạm lên điện thoại */
-.player.touched .dashboard {
-    background-color: rgba(255, 255, 255, 0.9);
-    /* Thêm các điều chỉnh khác tùy theo mong muốn */
 }
