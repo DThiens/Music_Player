@@ -164,6 +164,20 @@ const app = {
         })
         cdThumbAnimate.pause()
 
+        let isTouchingVolume =false
+        volumeBar.addEventListener('touchstart', (e) => {
+            isTouchingVolume = true;
+        },{passive:false});
+        
+        document.addEventListener('touchmove',(e)=>{
+            if (isTouchingVolume) {
+                e.preventDefault(); // Ngăn cuộn trang khi di chuyển ngón tay
+            }
+        })
+        document.addEventListener('touchend', () => {
+            isTouchingVolume = false;
+        });
+
         document.onscroll = function () {
             const scrollTop = document.documentElement.scrollTop
             const newCdWidth = cdWidth - scrollTop
@@ -352,6 +366,7 @@ const app = {
             if (songNode || e.target.closest('.option')) {
                 if (songNode) {
                     _this.currentIndex = Number(songNode.dataset.index)
+                    _this.progressSong = 0
                     _this.loadCurrentSong()
                     $('.song.active').classList.remove('active')
                     songNode.classList.add('active')
@@ -384,6 +399,7 @@ const app = {
                 unmuteIcon.style.visibility = 'visible'
             }
         }
+
         volumeBar.oninput = e => {
             this.setConfig("currentVolume", e.target.value)
             audio.volume = volumeBar.value
