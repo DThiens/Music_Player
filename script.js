@@ -302,7 +302,7 @@ const app = {
         nextBtn.addEventListener('touchstart', () => {
             nextBtn.style.backgroundColor = '#d3d3d3'
             nextBtn.style.borderRadius = '50%'
-            nextBtn.querySelector('.tooltip').style.opacity = 1
+            nextBtn.querySelector('.tooltip').style.opacity = '1'
         }, { passive: true })
 
         nextBtn.addEventListener('touchmove', () => {
@@ -312,7 +312,7 @@ const app = {
         nextBtn.addEventListener('touchend', () => {
             nextBtn.style.backgroundColor = ''
             nextBtn.style.borderRadius = ''
-            nextBtn.querySelector('.tooltip').style.opacity = '0'
+            nextBtn.querySelector('.tooltip').style.opacity = ''
         }, { passive: true })
 
         nextBtn.onclick = function () {
@@ -337,7 +337,7 @@ const app = {
 
         prevBtn.addEventListener('touchend', () => {
             prevBtn.style.backgroundColor = ''
-            prevBtn.querySelector('.tooltip').style.opacity = '0'
+            prevBtn.querySelector('.tooltip').style.opacity = ''
             prevBtn.style.borderRadius = ''
         }, { passive: true })
 
@@ -364,7 +364,7 @@ const app = {
 
         repeatBtn.addEventListener('touchend', () => {
             repeatBtn.style.backgroundColor = ''
-            repeatBtn.querySelector('.tooltip').style.opacity = '0'
+            repeatBtn.querySelector('.tooltip').style.opacity = ''
             repeatBtn.style.borderRadius = ''
         }, { passive: true })
 
@@ -386,7 +386,7 @@ const app = {
 
         randomBtn.addEventListener('touchend', () => {
             randomBtn.style.backgroundColor = ''
-            randomBtn.querySelector('.tooltip').style.opacity = '0'
+            randomBtn.querySelector('.tooltip').style.opacity = ''
             randomBtn.style.borderRadius = ''
         }, { passive: true })
 
