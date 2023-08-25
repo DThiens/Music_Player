@@ -164,17 +164,17 @@ const app = {
         })
         cdThumbAnimate.pause()
 
-        let isTouchingVolume =false
+        let isTouchingVolume = false
         volumeBar.addEventListener('touchstart', (e) => {
             isTouchingVolume = true;
-        },{passive:false});
-        
-        document.addEventListener('touchmove',(e)=>{
+        }, { passive: false });
+
+        document.addEventListener('touchmove', (e) => {
             if (isTouchingVolume) {
                 e.preventDefault(); // Ngăn cuộn trang khi di chuyển ngón tay
             }
         })
-        document.addEventListener('touchend', () => {
+        document.addEventListener('touchend', (e) => {
             isTouchingVolume = false;
         });
 
@@ -187,26 +187,27 @@ const app = {
             cd.style.opacity = newCdWidth / cdWidth
         }
         // Xử lý khi click play
-        playBtn.addEventListener('touchstart', () => {
+        playBtn.addEventListener('touchstart', (e) => {
+            
             playBtn.style.backgroundColor = 'rgb(255 0 0 / 39%)'
-            // console.log(playBtn.querySelector('.icon-pause .tooltip'))
-            if(!_this.isPlaying) {
+            if (!_this.isPlaying) {
                 const iconPlay = playBtn.querySelector('.icon-play .tooltip')
                 iconPlay.style.opacity = 1
-            }else {
+            } else {
                 const iconPause = playBtn.querySelector('.icon-pause .tooltip')
                 iconPause.style.opacity = 1
             }
         }, { passive: true })
 
-        playBtn.addEventListener('touchmove', () => {
+        playBtn.addEventListener('touchmove', (e) => {
             playBtn.querySelector('.tooltip').style.opacity = '1'
         }, { passive: true })
 
-        playBtn.addEventListener('touchend', () => {
+        playBtn.addEventListener('touchend', (e) => {
             playBtn.style.backgroundColor = ''
             playBtn.querySelector('.icon-play .tooltip').style.opacity = ''
             playBtn.querySelector('.icon-pause .tooltip').style.opacity = ''
+
         }, { passive: true })
 
         playBtn.onmousedown = function () {
@@ -230,6 +231,49 @@ const app = {
                 cdThumbAnimate.pause()
             }
         }
+
+        let isTouchingProgressBar = false
+
+            progress.addEventListener('touchstart', (e) => {
+                if (e.cancelable) {
+                    e.preventDefault();
+                }
+                isTouchingProgressBar = true;
+                $('.progress').style.height = '10px'
+                $('.progress').style.cursor = 'pointer'
+                const touchX = e.touches[0].clientX; // Vị trí ngón tay theo trục X
+                const progressRect = progress.getBoundingClientRect(); // Kích thước và vị trí của thanh progress
+                if (touchX >= progressRect.left && touchX <= progressRect.right) {
+                    // Ngón tay chạm vào thanh progress
+                    // Thực hiện xử lý ở đây, ví dụ: cập nhật audio.currentTime
+                    const percent = (touchX - progressRect.left) / progressRect.width;
+                    const seekTime = audio.duration * percent;
+                    audio.currentTime = seekTime;
+                }
+            }, { passive: false })
+            progress.addEventListener('touchmove', (e) => {
+                if (isTouchingProgressBar) {
+                    const touchX = e.touches[0].clientX; // Vị trí ngón tay theo trục X
+                    const progressRect = progress.getBoundingClientRect(); // Kích thước và vị trí của thanh progress
+                    
+                    if (touchX >= progressRect.left && touchX <= progressRect.right) {
+                        // Ngón tay di chuyển trong phạm vi của thanh progress
+                        const percent = (touchX - progressRect.left) / progressRect.width;
+                        const seekTime = audio.duration * percent;
+                        audio.currentTime = seekTime;
+                    } else {
+                        console.log('không chạm progress')
+                        // Người dùng chạm ngoài phạm vi thanh progress
+                        // Không cập nhật giá trị audio.currentTime
+                    }
+                }
+            }, { passive: true });
+            progress.addEventListener('touchend', e => {
+                $('.progress').style.height = ''
+                $('.progress').style.cursor = ''
+                isTouchingProgressBar = false;
+            }, { passive: false })
+
         //Khi tiến độ bài hát thay đổi
         audio.ontimeupdate = function () {
             if (audio.duration) {
@@ -239,15 +283,16 @@ const app = {
                 audioTimeLeft.innerHTML = _this.formatTime(audio.currentTime)
                 var color = 'linear-gradient(to right, var(--primary-color)' + progress.value + '% , rgb(214, 214, 214)' + progress.value + '%)';
                 progress.style.background = color;
+                progress.setAttribute('title','Left '+progressPercent+'%')
             }
             // Xử lý khi tua
             progress.oninput = function (e) {
                 const seekTime = audio.duration / 100 * e.target.value
                 audio.currentTime = seekTime
             }
+            
             ///cd Thumb complete percent
             const percent = progress.value / 100 * 180;
-            // console.log(percent)
             cdProgressFull.style.transform = `rotate(${percent}deg)`;
             cdProgressFill.forEach(fillElement => {
                 fillElement.style.transform = `rotate(${percent}deg)`;
@@ -289,7 +334,7 @@ const app = {
         prevBtn.addEventListener('touchmove', () => {
             prevBtn.querySelector('.tooltip').style.opacity = '1'
         }, { passive: true })
-        
+
         prevBtn.addEventListener('touchend', () => {
             prevBtn.style.backgroundColor = ''
             prevBtn.querySelector('.tooltip').style.opacity = '0'
@@ -405,7 +450,7 @@ const app = {
             audio.volume = volumeBar.value
             volumeBar.setAttribute("title", "Âm lượng " + volumeBar.value * 100 + "%")
         }
-        
+
         unmuteIcon.onclick = e => {
             this.setConfig("savedVolume", audio.volume)
             audio.volume = 0

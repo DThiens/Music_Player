@@ -167,7 +167,8 @@ header h2 {
 
 
 .control {
-    position: relative
+    position: relative;
+    margin-bottom: 10px;
 }
 
 .control-right {
@@ -201,17 +202,11 @@ header h2 {
 }
 
 
-/* .duration-bar:hover .progress {
+.duration-bar:hover .progress {
     height: 10px;
     cursor: pointer;
-} */
-
-@media (hover:hover) {
-    .duration-bar:hover .progress {
-        height: 10px;
-        cursor: pointer;
-    } 
 }
+
 
 .progress {
     appearance: none;
@@ -225,13 +220,15 @@ header h2 {
     border-radius: 5px;
 }
 
+
+
 .progress::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     background-color: var(--primary-color);
+    filter: drop-shadow(2px 4px 6px black);
     cursor: pointer;
     border-radius: 50%;
-
 }
 
 .progress:hover::-webkit-slider-thumb {
